@@ -7,6 +7,8 @@ package banco;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +37,47 @@ public class DBConexao {
             throw new ClassNotFoundException("Driver MySql não foi encontrado " + e.getMessage());
         }catch(SQLException e){
             throw new SQLException("Erro ao conectar " + "com a base de dados" + e.getMessage());
+        }
+    }
+    
+    
+    public static void fechaConexao(Connection conn){
+        try{
+           
+            if(conn != null){
+                conn.close();
+                System.out.println("Connection fechado com sucesso");
+            }
+        } catch (Exception e){
+            System.out.println("Não foi possível fechar o Connection" + e.getMessage());
+        }
+    }
+    
+    public static void fechaConexao(Connection conn, PreparedStatement stmt){
+        try{
+            if(conn != null || stmt !=null){
+                fechaConexao(conn);
+            }
+            if(stmt != null){
+                stmt.close();
+                System.out.println("PreparedStatement fechado com sucesso");
+            }
+        } catch (Exception e){
+            System.out.println("Não foi possível fechar o PreparedStatement" + e.getMessage());
+        }
+    }
+    
+    public static void fechaConexao(Connection conn, PreparedStatement stmt, ResultSet rs){
+        try{
+            if(conn != null || stmt !=null){
+                fechaConexao(conn, stmt);
+            }
+            if(rs != null){
+                rs.close();
+                System.out.println("ResultSet fechado com sucesso");
+            }
+        } catch (Exception e){
+            System.out.println("Não foi possível fechar o ResultSet" + e.getMessage());
         }
     }
     

@@ -21,13 +21,9 @@ public class Contato {
 
     private String email;
 
- 
-
     public Contato() {
 
     }
-
- 
 
     public int getId() {
 
@@ -35,15 +31,11 @@ public class Contato {
 
     }
 
- 
-
     public void setId(int id) {
 
         this.id = id;
 
     }
-
- 
 
     public String getNome() {
 
@@ -51,15 +43,11 @@ public class Contato {
 
     }
 
- 
-
     public void setNome(String nome) {
 
         this.nome = nome;
 
     }
-
- 
 
     public String getTelefone() {
 
@@ -67,23 +55,17 @@ public class Contato {
 
     }
 
- 
-
     public void setTelefone(String telefone) {
 
         this.telefone = telefone;
 
     }
 
- 
-
     public String getEmail() {
 
         return email;
 
     }
-
- 
 
     public void setEmail(String email) {
 
