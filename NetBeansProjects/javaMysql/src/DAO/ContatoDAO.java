@@ -7,6 +7,7 @@ package DAO;
 
 import model.Contato;
 import banco.DBConexao;
+import controller.ContatoController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +30,7 @@ public class ContatoDAO {
     private final String DELETE= "DELETE FROM contato WHERE id=?";
     private final String UPDATE= "UPDATE CONTATO SET nome=?, telefone=?, email=? WHERE id=?";
     private final String CONTAR= "SELECT COUNT(*) as total FROM contato";
-    
+    private final String LISTBYNOMETEL= "SELECT * FROM contato WHERE nome= ? and telefone= ?";
     
     
      public void inserir(Contato contato) {
@@ -189,11 +190,41 @@ public class ContatoDAO {
         return total;
     }
     
+    public Contato getContatoNomeTel(Contato c){
+       Connection conn = null;
+        PreparedStatement pstm;
+        ResultSet rs= null;
+        Contato contato= new Contato();
+        try {
+            conn = DBConexao.getConexao();
+            pstm = conn.prepareStatement(LISTBYNOMETEL);
+            pstm.setString(1, c.getNome());
+            pstm.setString(2, c.getTelefone());
+            pstm.execute();
+            rs= pstm.executeQuery();
+         
+            rs.next();
+            contato.setId(rs.getInt("id"));
+            contato.setNome(rs.getString("nome"));
+            contato.setTelefone(rs.getString("telefone"));
+            contato.setEmail(rs.getString("email"));
+          
+            DBConexao.fechaConexao(conn, pstm, rs);
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar contato" + e.getMessage());
+        } catch(ClassNotFoundException e){
+            Logger.getLogger(ContatoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return contato;
+    }
+    
     public static void main(String args[]){
         ContatoDAO cdao= new ContatoDAO();
         Contato contato = new Contato();
         List<Contato> contatos= cdao.getContatos();
-        contato.setNome("ana");
+        contato.setNome("Otavio");
         contato.setTelefone("12323");
         contato.setEmail("otavio@gmail.com");
         //cdao.inserir(contato);
@@ -214,7 +245,11 @@ public class ContatoDAO {
         novo.setEmail("eli@gmail.com");
         cdao.atualizar(novo);*/
         
-        System.out.println(cdao.contar());
+        ContatoController cc= new ContatoController();
+        Contato novo= cc.listarContato(contato);
+        
+        System.out.println(novo.getNome());
+        System.out.println(novo.getId());
     }
 
 }
