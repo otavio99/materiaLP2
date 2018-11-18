@@ -1,20 +1,18 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 public class JanelaOpcoesView extends JFrame{
 	private JButton cadastrarAluno= new JButton("Cadastrar Aluno");
@@ -24,22 +22,36 @@ public class JanelaOpcoesView extends JFrame{
 
 
 	public JanelaOpcoesView(){
-		JPanel opPanel = new JPanel();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 400);
+		this.setSize(440, 300);
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
+
+		cadastrarAluno.setPreferredSize(new Dimension(170, 25));
+		cadastrarProfessor.setPreferredSize(new Dimension(170, 25));
+		cadastrarCurso.setPreferredSize(new Dimension(170, 25));
+
+		JPanel painelGeral = new JPanel();
+		JPanel space = new JPanel();
+		space.setPreferredSize(new Dimension(0, 45));
+		JPanel painelOp= new JPanel(new GridBagLayout());
+		GridBagConstraints c= new GridBagConstraints();
+		c.gridy= 0;
+		painelOp.add(cadastrarAluno, c);
+		c.gridy++;
+		painelOp.add(cadastrarProfessor, c);
+		c.gridy++;
+		painelOp.add(cadastrarCurso, c);
+
+		painelGeral.add(painelOp);
+
+		this.add(space, BorderLayout.NORTH);
+		this.add(painelGeral, BorderLayout.CENTER);
+
 
 		cadastrarAluno.setActionCommand("cadastrarAluno");
 		cadastrarProfessor.setActionCommand("cadastrarProfessor");
 		cadastrarCurso.setActionCommand("cadastrarCurso");
-
-
-		opPanel.add(cadastrarAluno);
-		opPanel.add(cadastrarProfessor);
-		opPanel.add(cadastrarCurso);
-	
-
-		this.add(opPanel);
 	}
 
 	public void addOpcoesListener(ActionListener listener){

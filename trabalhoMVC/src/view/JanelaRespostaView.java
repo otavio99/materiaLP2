@@ -1,43 +1,39 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 public class JanelaRespostaView extends JFrame{
 	private JLabel mensagem= new JLabel("Cadastro Finalizado!");
-	private JButton voltar= new JButton("Realizar outra Operação");
+	private JButton voltar= new JButton("Realizar outra Operacao");
 
 	public JanelaRespostaView(){
-		JPanel cadastroPanel = new JPanel();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(500, 300);
-		this.getContentPane().setLayout(new FlowLayout());
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
-		JPanel painelGeral = new JPanel(new GridLayout(2, 1));
+		JPanel painelGeral = new JPanel(new BorderLayout());
+		JPanel painelBotoes= new JPanel();
 		JPanel painelMensagem= new JPanel();
-		JPanel painelBotao= new JPanel();
+		GridBagConstraints c= new GridBagConstraints();
 
 		painelMensagem.add(mensagem);
-		painelBotao.add(voltar);
-
-		painelGeral.add(painelMensagem);
-		painelGeral.add(painelBotao);
+		painelBotoes.add(voltar);
+		painelGeral.add(painelMensagem, BorderLayout.CENTER);
+		painelGeral.add(painelBotoes, BorderLayout.SOUTH);
 
 		this.add(painelGeral);
+		this.pack();
 	}
 
 	public void addRespostaListener(ActionListener listener){

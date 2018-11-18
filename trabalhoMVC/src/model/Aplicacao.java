@@ -2,9 +2,10 @@ package model;
 
 import controller.UsuarioController;
 import view.UsuarioView;
+//import model.Usuario;
 
 public class Aplicacao{
-	public static void main(String args[]) {
+	public static void main(String[] args){
 		UsuarioView janela= new UsuarioView();
 		Usuario usuario= new Usuario();
 		UsuarioController usuarioControlador= new UsuarioController(janela, usuario);
@@ -12,19 +13,5 @@ public class Aplicacao{
 		janela.setVisible(true);
 
 	}
+	
 }
-
-/*public class MVCCalculator {
-    
-    public static void main(String[] args) {
-    	
-    	CalculatorView theView = new CalculatorView();
-        
-    	CalculatorModel theModel = new CalculatorModel();
-        
-        CalculatorController theController = new CalculatorController(theView,theModel);
-        
-        theView.setVisible(true);
-        
-    }
-}*/

@@ -1,28 +1,27 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.*;
+import javax.swing.JOptionPane;
+
 
 public class CadastroProfessorView extends JFrame{
-	private JLabel nome= new JLabel("Nome:");
-	private JLabel endereco= new JLabel("Endereco:");
-	private JLabel telefone= new JLabel("Telefone:");
-	private JLabel cpf= new JLabel("Cpf:");
-	private JLabel tipo= new JLabel("Tipo:");
-	private JLabel salario= new JLabel("Salario");
+	private JLabel nome= new JLabel("Nome:   ");
+	private JLabel endereco= new JLabel("Endereco:   ");
+	private JLabel telefone= new JLabel("Telefone:   ");
+	private JLabel cpf= new JLabel("Cpf:   ");
+	private JLabel tipo= new JLabel("Tipo:   ");
+	private JLabel salario= new JLabel("Salario:   ");
 
 	private JTextField nomeArea= new JTextField(20);
 	private JTextField enderecoArea= new JTextField(20);
@@ -36,47 +35,67 @@ public class CadastroProfessorView extends JFrame{
 
 
 	public CadastroProfessorView(){
-
-		JPanel cadastroPanel = new JPanel();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 300);
-		this.getContentPane().setLayout(new FlowLayout());
+		this.setSize(440, 250);
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
-		JPanel painelGeral = new JPanel(new GridLayout(8, 1));
-		JPanel painelNome= new JPanel();
-		JPanel painelEndereco= new JPanel();
-		JPanel painelTelefone= new JPanel();
-		JPanel painelCpf= new JPanel();
-		JPanel painelTipo= new JPanel();
-		JPanel painelSalario= new JPanel();
+		cadastrar.setPreferredSize(new Dimension(100, 25));
+		voltar.setPreferredSize(new Dimension(100, 25));
 
+		JPanel painelGeral = new JPanel(new GridBagLayout());
+		JPanel painelForm= new JPanel(new GridBagLayout());
+		JPanel painelBotoes= new JPanel();
+		JPanel painelBotaoCadastrar= new JPanel();
+		JPanel painelBotaoVoltar= new JPanel();
+		GridBagConstraints c= new GridBagConstraints();
+
+		c.gridx= 0;
+		c.gridy= 0;
+		c.anchor= GridBagConstraints.LINE_END;
+		painelForm.add(nome, c);
+		c.gridy++;
+		painelForm.add(endereco, c);
+		c.gridy++;
+		painelForm.add(telefone, c);
+		c.gridy++;
+		painelForm.add(cpf, c);
+		c.gridy++;
+		painelForm.add(tipo, c);
+		c.gridy++;
+		painelForm.add(salario, c);
+
+		c.gridx= 1;
+		c.gridy= 0;
+		c.anchor= GridBagConstraints.LINE_START;
+		painelForm.add(nomeArea, c);
+		c.gridy++;
+		painelForm.add(enderecoArea, c);
+		c.gridy++;
+		painelForm.add(telefoneArea, c);
+		c.gridy++;
+		painelForm.add(cpfArea, c);
+		c.gridy++;
+		painelForm.add(tipoArea, c);
+		c.gridy++;
+		painelForm.add(salarioArea, c);
+
+		painelBotoes.add(cadastrar);
+		painelBotoes.add(voltar);
+
+		GridBagConstraints c2= new GridBagConstraints();
+		c2.gridx= 0;
+		c2.gridy= 0;
+		c2.weighty=5;
+		painelGeral.add(painelForm, c2);
+		c2.gridy++;
+		painelGeral.add(painelBotoes, c2);
+
+		this.add(painelGeral);
+	
+		
 		cadastrar.setActionCommand("cadastrar");
 		voltar.setActionCommand("voltar");
-
-		painelNome.add(nome);
-		painelNome.add(nomeArea);
-		painelEndereco.add(endereco);
-		painelEndereco.add(enderecoArea);
-		painelTelefone.add(telefone);
-		painelTelefone.add(telefoneArea);
-		painelCpf.add(cpf);
-		painelCpf.add(cpfArea);
-		painelTipo.add(tipo);
-		painelTipo.add(tipoArea);
-		painelSalario.add(salario);
-		painelSalario.add(salarioArea);
-
-		painelGeral.add(painelNome);
-		painelGeral.add(painelEndereco);
-		painelGeral.add(painelTelefone);
-		painelGeral.add(painelCpf);
-		painelGeral.add(painelTipo);
-		painelGeral.add(painelSalario);
-
-		painelGeral.add(cadastrar);
-		painelGeral.add(voltar);
-		this.add(painelGeral);
 	}
 
 	public String getNomeArea(){
