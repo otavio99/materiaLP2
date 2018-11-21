@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ public class JanelaOpcoesView extends JFrame{
 	private JButton cadastrarAluno= new JButton("Cadastrar Aluno");
 	private JButton cadastrarProfessor= new JButton("Cadastrar Professor");
 	private JButton cadastrarCurso= new JButton("Cadastrar Curso");
+        private JButton cadastrarTurma= new JButton("Cadastrar Turma");
 	
 
 
@@ -30,6 +32,7 @@ public class JanelaOpcoesView extends JFrame{
 		cadastrarAluno.setPreferredSize(new Dimension(170, 25));
 		cadastrarProfessor.setPreferredSize(new Dimension(170, 25));
 		cadastrarCurso.setPreferredSize(new Dimension(170, 25));
+                cadastrarTurma.setPreferredSize(new Dimension(170, 25));
 
 		JPanel painelGeral = new JPanel();
 		JPanel space = new JPanel();
@@ -37,11 +40,14 @@ public class JanelaOpcoesView extends JFrame{
 		JPanel painelOp= new JPanel(new GridBagLayout());
 		GridBagConstraints c= new GridBagConstraints();
 		c.gridy= 0;
+                c.insets= new Insets(4,4,4,4);
 		painelOp.add(cadastrarAluno, c);
 		c.gridy++;
 		painelOp.add(cadastrarProfessor, c);
 		c.gridy++;
 		painelOp.add(cadastrarCurso, c);
+                c.gridy++;
+		painelOp.add(cadastrarTurma, c);
 
 		painelGeral.add(painelOp);
 
@@ -52,12 +58,14 @@ public class JanelaOpcoesView extends JFrame{
 		cadastrarAluno.setActionCommand("cadastrarAluno");
 		cadastrarProfessor.setActionCommand("cadastrarProfessor");
 		cadastrarCurso.setActionCommand("cadastrarCurso");
+                cadastrarTurma.setActionCommand("cadastrarTurma");
 	}
 
 	public void addOpcoesListener(ActionListener listener){
         cadastrarAluno.addActionListener(listener);
         cadastrarProfessor.addActionListener(listener);
         cadastrarCurso.addActionListener(listener);
+        cadastrarTurma.addActionListener(listener);
      
     }
 

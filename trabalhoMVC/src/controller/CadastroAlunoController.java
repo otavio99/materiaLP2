@@ -10,7 +10,6 @@ import view.*;
 public class CadastroAlunoController{
 	private CadastroAlunoView jAluno= new CadastroAlunoView();
 	private Aluno aluno= new Aluno();
-	public static LinkedList<Aluno> listaAluno= new LinkedList<Aluno>();
 
 	public CadastroAlunoController(CadastroAlunoView jAluno){
 		this.jAluno= jAluno;
@@ -18,11 +17,7 @@ public class CadastroAlunoController{
 	}
 
 	public CadastroAlunoController(){}
-
-	public LinkedList<Aluno> getListaAluno(){
-		return this.listaAluno;
-	}
-
+        
 	class AlunoListener implements ActionListener{
                 @Override
 		public void actionPerformed(ActionEvent e){
@@ -32,8 +27,7 @@ public class CadastroAlunoController{
 			String cpf= " ";
 			String tipo= " ";
 			double desconto= 0.0;
-			JanelaRespostaView jResposta= new JanelaRespostaView();
-			JanelaRespostaController cResposta= new JanelaRespostaController(jResposta);
+			
 
 			String acao= e.getActionCommand();
 			JanelaOpcoesView jOpcoes= new JanelaOpcoesView();
@@ -54,11 +48,10 @@ public class CadastroAlunoController{
 					aluno.setCpf(cpf);
 					aluno.setTipo(tipo);
 					aluno.setDesconto(desconto);
-
-					listaAluno.add(aluno);
-
+                                        
 					jAluno.setVisible(false);
-					jResposta.setVisible(true);
+					jAluno.mostrarMensagem("Cadastro realizado com sucesso");
+                                        jOpcoes.setVisible(true);
 				}
 				else if(acao.equals("voltar")){
 					jAluno.setVisible(false);
@@ -67,7 +60,7 @@ public class CadastroAlunoController{
 
 			}
 			catch(Exception ex){
-				jAluno.mostrarMensagemErro("Valor inserido invalido");
+				jAluno.mostrarMensagem("Valor inserido invalido");
 				System.out.println(ex);
 			}
 

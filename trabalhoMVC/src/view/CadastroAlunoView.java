@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,12 +16,12 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 
 public class CadastroAlunoView extends JFrame{
-	private JLabel nome= new JLabel("Nome:   ");
-	private JLabel endereco= new JLabel("Endereco:   ");
-	private JLabel telefone= new JLabel("Telefone:   ");
-	private JLabel cpf= new JLabel("Cpf:   ");
-	private JLabel tipo= new JLabel("Tipo:   ");
-	private JLabel desconto= new JLabel("Desconto:   ");
+	private JLabel nome= new JLabel("Nome:");
+	private JLabel endereco= new JLabel("Endereco:");
+	private JLabel telefone= new JLabel("Telefone:");
+	private JLabel cpf= new JLabel("Cpf:");
+	private JLabel tipo= new JLabel("Tipo:");
+	private JLabel desconto= new JLabel("Desconto:");
 
 	private JTextField nomeArea= new JTextField(20);
 	private JTextField enderecoArea= new JTextField(20);
@@ -34,7 +35,7 @@ public class CadastroAlunoView extends JFrame{
 
 	public CadastroAlunoView(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(700, 250);
+		this.setSize(440, 250);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
@@ -46,11 +47,13 @@ public class CadastroAlunoView extends JFrame{
 		JPanel painelBotoes= new JPanel();
 		JPanel painelBotaoCadastrar= new JPanel();
 		JPanel painelBotaoVoltar= new JPanel();
+                JPanel espaco= new JPanel();
 		GridBagConstraints c= new GridBagConstraints();
 
 		c.gridx= 0;
 		c.gridy= 0;
 		c.anchor= GridBagConstraints.LINE_END;
+                c.insets= new Insets(4,4,4,4);
 		painelForm.add(nome, c);
 		c.gridy++;
 		painelForm.add(endereco, c);
@@ -116,12 +119,13 @@ public class CadastroAlunoView extends JFrame{
 	}
 
 	public void addCadastroAlunoListener(ActionListener listener){
-        cadastrar.addActionListener(listener);
-        voltar.addActionListener(listener);
-        this.setFocusable(true);
-    }
+            cadastrar.addActionListener(listener);
+            voltar.addActionListener(listener);
+            this.setFocusable(true);
+        }
 	//OI!!!
-    public void mostrarMensagemErro(String mensagem){
+
+    public void mostrarMensagem(String mensagem){
         JOptionPane.showMessageDialog(this, mensagem);
     }
 

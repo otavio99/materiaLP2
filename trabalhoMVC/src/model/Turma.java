@@ -2,23 +2,24 @@ package model;
 
 public class Turma{
 	private String horario;
-	private Professor professor;
+	private String professor;
 	private int cod;
 	private int numVagas;
+        private String descricaoCurso;
 
 	public Turma(){}
 	
-	public Turma(String horario, Professor professor, int cod, int numVagas){
+	public Turma(String horario, String professor, int numVagas, String descricaoCurso){
 		this.horario= horario;
 		this.professor= professor;
-		this.cod= cod;
 		this.numVagas= numVagas;
+                this.descricaoCurso= descricaoCurso;
 	}
 
 	public String getHorario(){
 		return this.horario;
 	}
-	public Professor getProfessor(){
+	public String getProfessor(){
 		return this.professor;
 	}
 	public int getCod(){
@@ -27,11 +28,14 @@ public class Turma{
 	public int getNumVagas(){
 		return this.numVagas;
 	}
+        public String descricaoCurso(){
+		return this.descricaoCurso;
+	}
 
 	public void setHorario(String horario){
 		this.horario= horario;
 	}
-	public void setProfessor(Professor professor){
+	public void setProfessor(String professor){
 		this.professor= professor;
 	}
 	public void setCod(int cod){
@@ -39,5 +43,8 @@ public class Turma{
 	}
 	public void setNumVagas(int numVagas){
 		this.numVagas= numVagas;
+	}
+        public void setDescricaoCurso(String descricaoCurso){
+		this.descricaoCurso= descricaoCurso;
 	}
 }

@@ -22,8 +22,7 @@ public class CadastroCursoController{
 			int cod= 0;
 			double mensalidade= 0.0;
 			String idioma= " ";
-			JanelaRespostaView jResposta= new JanelaRespostaView();
-			JanelaRespostaController cResposta= new JanelaRespostaController(jResposta);
+		
 
 			String acao= e.getActionCommand();
 			JanelaOpcoesView jOpcoes= new JanelaOpcoesView();
@@ -43,7 +42,8 @@ public class CadastroCursoController{
 					listaCurso.add(curso);
 
 					jCurso.setVisible(false);
-					jResposta.setVisible(true);
+					jCurso.mostrarMensagem("Cadastro realizado com sucesso");
+                                        jOpcoes.setVisible(true);
 				}
 				else if(acao.equals("voltar")){
 					jCurso.setVisible(false);
@@ -52,7 +52,7 @@ public class CadastroCursoController{
 
 			}
 			catch(Exception ex){
-				jCurso.mostrarMensagemErro("Valor inserido invalido");
+				jCurso.mostrarMensagem("Valor inserido invalido");
 				System.out.println(ex);
 			}
 

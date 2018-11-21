@@ -15,20 +15,21 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 
-public class CadastroCursoView extends JFrame{
-	private JLabel cod= new JLabel("Cod:");
-	private JLabel mensalidade= new JLabel("Mensalidade:");
-	private JLabel idioma= new JLabel("Idioma:");
+public class CadastroTurmaView extends JFrame{
+	private JLabel horario= new JLabel("Horario:");
+	private JLabel professor= new JLabel("Professor:");
+	private JLabel numVagas= new JLabel("Numero de vagas:");
+        private JLabel descricaoCurso= new JLabel("Curso:");
 
-	private JTextField codArea= new JTextField(20);
-	private JTextField mensalidadeArea= new JTextField(20);
-	private JTextField idiomaArea= new JTextField(20);
-
+	private JTextField horarioArea= new JTextField(20);
+	private JTextField professorArea= new JTextField(20);
+	private JTextField numVagasArea= new JTextField(20);
+        private JTextField descricaoCursoArea= new JTextField(20);
+        
 	private JButton cadastrar= new JButton("Cadastrar");
 	private JButton voltar= new JButton("Voltar");
 
-
-	public CadastroCursoView(){
+	public CadastroTurmaView(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(440, 250);
 		this.setResizable(false);
@@ -40,26 +41,33 @@ public class CadastroCursoView extends JFrame{
 		JPanel painelGeral = new JPanel(new GridBagLayout());
 		JPanel painelForm= new JPanel(new GridBagLayout());
 		JPanel painelBotoes= new JPanel();
+		JPanel painelBotaoCadastrar= new JPanel();
+		JPanel painelBotaoVoltar= new JPanel();
+                JPanel espaco= new JPanel();
 		GridBagConstraints c= new GridBagConstraints();
 
 		c.gridx= 0;
 		c.gridy= 0;
 		c.anchor= GridBagConstraints.LINE_END;
                 c.insets= new Insets(4,4,4,4);
-		painelForm.add(cod, c);
+		painelForm.add(horario, c);
 		c.gridy++;
-		painelForm.add(mensalidade, c);
+		painelForm.add(professor, c);
 		c.gridy++;
-		painelForm.add(idioma, c);
+		painelForm.add(numVagas, c);
+		c.gridy++;
+		painelForm.add(descricaoCurso, c);
 
 		c.gridx= 1;
 		c.gridy= 0;
 		c.anchor= GridBagConstraints.LINE_START;
-		painelForm.add(codArea, c);
+		painelForm.add(horarioArea, c);
 		c.gridy++;
-		painelForm.add(mensalidadeArea, c);
+		painelForm.add(professorArea, c);
 		c.gridy++;
-		painelForm.add(idiomaArea, c);
+		painelForm.add(numVagasArea, c);
+		c.gridy++;
+		painelForm.add(descricaoCursoArea, c);
 
 		painelBotoes.add(cadastrar);
 		painelBotoes.add(voltar);
@@ -75,24 +83,30 @@ public class CadastroCursoView extends JFrame{
 		this.add(painelGeral);
 		
 		cadastrar.setActionCommand("cadastrar");
-		voltar.setActionCommand("voltar");		
+		voltar.setActionCommand("voltar");
+
 	}
 
-	public int getCodArea(){
-		return Integer.parseInt(codArea.getText());
+	public String getHorarioArea(){
+		return this.horarioArea.getText();
 	}
-	public Double getMensalidadeArea(){
-		return Double.parseDouble(mensalidadeArea.getText());
+	public String getProfessorArea(){
+		return this.professorArea.getText();
 	}
-	public String getIdiomaArea(){
-		return this.idiomaArea.getText();
+	public String getNumVagasArea(){
+		return this.numVagasArea.getText();
 	}
+	public String getDescricaoCursoArea(){
+		return this.descricaoCursoArea.getText();
+	}
+	
 
-	public void addCadastroCursoListener(ActionListener listener){
-        cadastrar.addActionListener(listener);
-        voltar.addActionListener(listener);
-        this.setFocusable(true);
-    }
+	public void addCadastroAlunoListener(ActionListener listener){
+            cadastrar.addActionListener(listener);
+            voltar.addActionListener(listener);
+            this.setFocusable(true);
+        }
+	//OI!!!
 
     public void mostrarMensagem(String mensagem){
         JOptionPane.showMessageDialog(this, mensagem);

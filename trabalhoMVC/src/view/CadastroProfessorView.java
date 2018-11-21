@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,12 +17,12 @@ import javax.swing.JOptionPane;
 
 
 public class CadastroProfessorView extends JFrame{
-	private JLabel nome= new JLabel("Nome:   ");
-	private JLabel endereco= new JLabel("Endereco:   ");
-	private JLabel telefone= new JLabel("Telefone:   ");
-	private JLabel cpf= new JLabel("Cpf:   ");
-	private JLabel tipo= new JLabel("Tipo:   ");
-	private JLabel salario= new JLabel("Salario:   ");
+	private JLabel nome= new JLabel("Nome:");
+	private JLabel endereco= new JLabel("Endereco:");
+	private JLabel telefone= new JLabel("Telefone:");
+	private JLabel cpf= new JLabel("Cpf:");
+	private JLabel tipo= new JLabel("Tipo:");
+	private JLabel salario= new JLabel("Salario:");
 
 	private JTextField nomeArea= new JTextField(20);
 	private JTextField enderecoArea= new JTextField(20);
@@ -54,6 +55,7 @@ public class CadastroProfessorView extends JFrame{
 		c.gridy= 0;
 		c.anchor= GridBagConstraints.LINE_END;
 		painelForm.add(nome, c);
+                c.insets= new Insets(4,4,4,4);
 		c.gridy++;
 		painelForm.add(endereco, c);
 		c.gridy++;
@@ -123,7 +125,7 @@ public class CadastroProfessorView extends JFrame{
         this.setFocusable(true);
     }
 
-    public void mostrarMensagemErro(String mensagem){
+    public void mostrarMensagem(String mensagem){
         JOptionPane.showMessageDialog(this, mensagem);
     }
 

@@ -23,6 +23,8 @@ public class JanelaOpcoesController{
 			CadastroProfessorController cProfessor= new CadastroProfessorController(jProfessor);
 			CadastroCursoView jCurso= new CadastroCursoView();
 			CadastroCursoController cCurso= new CadastroCursoController(jCurso);
+                        CadastroTurmaView jTurma= new CadastroTurmaView();
+                        CadastroTurmaController cTurma= new CadastroTurmaController(jTurma);
 	
 
 			try{
@@ -38,6 +40,10 @@ public class JanelaOpcoesController{
 		            case "cadastrarCurso":
 		                jOpcoes.setVisible(false);
 		                jCurso.setVisible(true);
+		            break;
+                            case "cadastrarTurma":
+		                jOpcoes.setVisible(false);
+		                jTurma.setVisible(true);
 		            break;
 		        
 		        } 

@@ -25,8 +25,7 @@ public class CadastroProfessorController{
 			String cpf= " ";
 			String tipo= " ";
 			double salario= 0.0;
-			JanelaRespostaView jResposta= new JanelaRespostaView();
-			JanelaRespostaController cResposta= new JanelaRespostaController(jResposta);
+			
 
 			String acao= e.getActionCommand();
 			JanelaOpcoesView jOpcoes= new JanelaOpcoesView();
@@ -51,7 +50,8 @@ public class CadastroProfessorController{
 					listaProfessor.add(professor);
 
 					jProfessor.setVisible(false);
-					jResposta.setVisible(true);
+					jProfessor.mostrarMensagem("Cadastro realizado com sucesso");
+                                        jOpcoes.setVisible(true);
 				}
 				else if(acao.equals("voltar")){
 					jProfessor.setVisible(false);
@@ -60,7 +60,7 @@ public class CadastroProfessorController{
 
 			}
 			catch(Exception ex){
-				jProfessor.mostrarMensagemErro("Valor inserido invalido");
+				jProfessor.mostrarMensagem("Valor inserido invalido");
 				System.out.println(ex);
 			}
 
