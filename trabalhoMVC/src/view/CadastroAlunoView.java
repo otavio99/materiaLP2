@@ -34,7 +34,7 @@ public class CadastroAlunoView extends JFrame{
 
 	public CadastroAlunoView(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(440, 250);
+		this.setSize(700, 250);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
