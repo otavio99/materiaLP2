@@ -23,6 +23,7 @@ public class CadastroProfessorView extends JFrame{
 	private JLabel cpf= new JLabel("Cpf:");
 	private JLabel tipo= new JLabel("Tipo:");
 	private JLabel salario= new JLabel("Salario:");
+        private JLabel titulacao= new JLabel("Titulo:");
 
 	private JTextField nomeArea= new JTextField(20);
 	private JTextField enderecoArea= new JTextField(20);
@@ -30,6 +31,7 @@ public class CadastroProfessorView extends JFrame{
 	private JTextField cpfArea= new JTextField(20);
 	private JTextField tipoArea= new JTextField(20);
 	private JTextField salarioArea= new JTextField(20);
+        private JTextField titulacaoArea= new JTextField(20);
 
 	private JButton cadastrar= new JButton("Cadastrar");
 	private JButton voltar= new JButton("Voltar");
@@ -37,7 +39,7 @@ public class CadastroProfessorView extends JFrame{
 
 	public CadastroProfessorView(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(440, 250);
+		this.setSize(440, 300);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
@@ -66,6 +68,8 @@ public class CadastroProfessorView extends JFrame{
 		painelForm.add(tipo, c);
 		c.gridy++;
 		painelForm.add(salario, c);
+                c.gridy++;
+		painelForm.add(titulacao, c);
 
 		c.gridx= 1;
 		c.gridy= 0;
@@ -81,6 +85,8 @@ public class CadastroProfessorView extends JFrame{
 		painelForm.add(tipoArea, c);
 		c.gridy++;
 		painelForm.add(salarioArea, c);
+                c.gridy++;
+		painelForm.add(titulacaoArea, c);
 
 		painelBotoes.add(cadastrar);
 		painelBotoes.add(voltar);
@@ -117,6 +123,9 @@ public class CadastroProfessorView extends JFrame{
 	}
 	public double getSalarioArea(){
 		return Double.parseDouble(salarioArea.getText());
+	}
+        public String getTitulacaoArea(){
+		return titulacaoArea.getText();
 	}
 
 	public void addCadastroProfessorListener(ActionListener listener){

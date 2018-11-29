@@ -25,7 +25,7 @@ public class CadastroProfessorController{
 			String cpf= " ";
 			String tipo= " ";
 			double salario= 0.0;
-			
+			String titulacao= " ";
 
 			String acao= e.getActionCommand();
 			JanelaOpcoesView jOpcoes= new JanelaOpcoesView();
@@ -39,6 +39,7 @@ public class CadastroProfessorController{
 					cpf= jProfessor.getCpfArea();
 					tipo= jProfessor.getTipoArea();
 					salario= jProfessor.getSalarioArea();
+                                        titulacao= jProfessor.getTitulacaoArea();
 
 					professor.setNome(nome);
 					professor.setEndereco(endereco);
@@ -46,6 +47,7 @@ public class CadastroProfessorController{
 					professor.setCpf(cpf);
 					professor.setTipo(tipo);
 					professor.setSalario(salario);
+                                        professor.setTitulacao(titulacao);
 
 					listaProfessor.add(professor);
 
