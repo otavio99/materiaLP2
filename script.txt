@@ -1,0 +1,77 @@
+create database cursoIdioma;
+
+use cursoIdioma;
+
+create table pessoa(
+    cod int primary key auto_increment,
+    nome varchar(50),
+    endereco varchar(200),
+    telefone varchar(20),
+    cpf varchar(11)
+);
+
+create table usuario(
+    login varchar(50),
+    senha varchar(16)
+);
+
+create table professor(
+    codPessoa int,
+    salario float,
+    titulacao varchar(20),
+    foreign key (codPessoa) references pessoa(cod)
+);
+
+create table aluno(
+    codPessoa int,
+    desconto float,
+    foreign key (codPessoa) references pessoa(cod)
+);
+
+create table atendente(
+    codPessoa int,
+    salario float,
+    horarios varchar(50),
+    foreign key (codPessoa) references pessoa(cod)
+);
+
+create table disciplina(
+    cod int primary key auto_increment,
+    nome varchar(50),
+    cargaHoraria varchar(50)
+);
+
+create table curso(
+    cod int primary key auto_increment,
+    mensalidade float,
+    idioma varchar(50)
+);
+
+create table turma(
+    cod int primary key auto_increment,
+    codCurso int,
+    horario varchar(50),
+    numVagas int,
+    descricaoCurso varchar(100),
+    foreign key (codCurso) references curso(cod)
+);
+
+create table aluno_disciplina(
+    codAluno int,
+    codDisciplina int,
+    n1 float,
+    n2 float,
+    anoSemestre varchar(15),
+    foreign key (codAluno) references aluno(codPessoa),
+    foreign key (codDisciplina) references disciplina(cod)
+);
+
+create table professor_disciplina(
+    codProfessor int,
+    codDisciplina int,
+    ano_semestre varchar(25),
+    codTurma int,
+    foreign key (codProfessor) references professor(codPessoa),
+    foreign key (codDisciplina) references disciplina(cod),
+    foreign key (codTurma) references turma(cod)
+);

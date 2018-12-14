@@ -16,23 +16,29 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 
 public class JanelaOpcoesView extends JFrame{
-	private JButton cadastrarAluno= new JButton("Cadastrar Aluno");
-	private JButton cadastrarProfessor= new JButton("Cadastrar Professor");
-	private JButton cadastrarCurso= new JButton("Cadastrar Curso");
-        private JButton cadastrarTurma= new JButton("Cadastrar Turma");
+    private JButton jAluno= new JButton("Aluno");
+    private JButton jProfessor= new JButton("Professor");
+    private JButton jCurso= new JButton("Curso");
+    private JButton jTurma= new JButton("Turma");
+    private JButton jDisciplina= new JButton("Disciplina");
+    private JButton jAlunoDisciplina= new JButton("Aluno-Disciplina");
+    private JButton jProfessorDisciplina= new JButton("Professor-Disciplina");
 	
 
 
 	public JanelaOpcoesView(){
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(440, 300);
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setSize(440, 400);
+            this.setResizable(false);
+            this.setLocationRelativeTo(null);
 
-		cadastrarAluno.setPreferredSize(new Dimension(170, 25));
-		cadastrarProfessor.setPreferredSize(new Dimension(170, 25));
-		cadastrarCurso.setPreferredSize(new Dimension(170, 25));
-                cadastrarTurma.setPreferredSize(new Dimension(170, 25));
+            jAluno.setPreferredSize(new Dimension(170, 25));
+            jProfessor.setPreferredSize(new Dimension(170, 25));
+            jCurso.setPreferredSize(new Dimension(170, 25));
+            jTurma.setPreferredSize(new Dimension(170, 25));
+            jDisciplina.setPreferredSize(new Dimension(170, 25));
+            jAlunoDisciplina.setPreferredSize(new Dimension(170, 25));
+            jProfessorDisciplina.setPreferredSize(new Dimension(170, 25));
 
 		JPanel painelGeral = new JPanel();
 		JPanel space = new JPanel();
@@ -41,13 +47,19 @@ public class JanelaOpcoesView extends JFrame{
 		GridBagConstraints c= new GridBagConstraints();
 		c.gridy= 0;
                 c.insets= new Insets(4,4,4,4);
-		painelOp.add(cadastrarAluno, c);
+		painelOp.add(jAluno, c);
 		c.gridy++;
-		painelOp.add(cadastrarProfessor, c);
+		painelOp.add(jProfessor, c);
 		c.gridy++;
-		painelOp.add(cadastrarCurso, c);
-                c.gridy++;
-		painelOp.add(cadastrarTurma, c);
+		painelOp.add(jCurso, c);
+            c.gridy++;
+		painelOp.add(jTurma, c);
+			c.gridy++;
+		painelOp.add(jDisciplina, c);
+		c.gridy++;
+		painelOp.add(jAlunoDisciplina, c);
+		c.gridy++;
+		painelOp.add(jProfessorDisciplina, c);
 
 		painelGeral.add(painelOp);
 
@@ -55,17 +67,23 @@ public class JanelaOpcoesView extends JFrame{
 		this.add(painelGeral, BorderLayout.CENTER);
 
 
-		cadastrarAluno.setActionCommand("cadastrarAluno");
-		cadastrarProfessor.setActionCommand("cadastrarProfessor");
-		cadastrarCurso.setActionCommand("cadastrarCurso");
-                cadastrarTurma.setActionCommand("cadastrarTurma");
+		jAluno.setActionCommand("cadastrarAluno");
+		jProfessor.setActionCommand("cadastrarProfessor");
+		jCurso.setActionCommand("cadastrarCurso");
+        jTurma.setActionCommand("cadastrarTurma");
+        jDisciplina.setActionCommand("cadastrarDisciplina");
+        jAlunoDisciplina.setActionCommand("cadastrarAlunoDisciplina");
+        jProfessorDisciplina.setActionCommand("cadastrarProfessorDisciplina");
 	}
 
 	public void addOpcoesListener(ActionListener listener){
-        cadastrarAluno.addActionListener(listener);
-        cadastrarProfessor.addActionListener(listener);
-        cadastrarCurso.addActionListener(listener);
-        cadastrarTurma.addActionListener(listener);
+        jAluno.addActionListener(listener);
+        jProfessor.addActionListener(listener);
+        jCurso.addActionListener(listener);
+        jTurma.addActionListener(listener);
+        jDisciplina.addActionListener(listener);
+        jAlunoDisciplina.addActionListener(listener);
+        jProfessorDisciplina.addActionListener(listener);
      
     }
 

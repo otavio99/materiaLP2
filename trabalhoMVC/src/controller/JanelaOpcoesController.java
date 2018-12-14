@@ -17,34 +17,45 @@ public class JanelaOpcoesController{
 	class JOpcoesListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			String acao= e.getActionCommand();
-			CadastroAlunoView jAluno= new CadastroAlunoView();
-			CadastroAlunoController cAluno= new CadastroAlunoController(jAluno);
-			CadastroProfessorView jProfessor= new CadastroProfessorView();
-			CadastroProfessorController cProfessor= new CadastroProfessorController(jProfessor);
-			CadastroCursoView jCurso= new CadastroCursoView();
-			CadastroCursoController cCurso= new CadastroCursoController(jCurso);
-                        CadastroTurmaView jTurma= new CadastroTurmaView();
-                        CadastroTurmaController cTurma= new CadastroTurmaController(jTurma);
-	
+			AlunoView jAluno= new AlunoView();
+			AlunoController cAluno= new AlunoController(jAluno);
+			ProfessorView jProfessor= new ProfessorView();
+			ProfessorController cProfessor= new ProfessorController(jProfessor);
+			CursoView jCurso= new CursoView();
+			CursoController cCurso= new CursoController(jCurso);
+			TurmaView jTurma= new TurmaView();
+			TurmaController cTurma= new TurmaController(jTurma);
+			DisciplinaView jDisciplina= new DisciplinaView();
+			DisciplinaController cDisciplina= new DisciplinaController(jDisciplina);
+			AlunoDisciplinaView jAlunoDisciplina= new AlunoDisciplinaView();
+			AlunoDisciplinaController cAlunoDisciplina= new AlunoDisciplinaController(jAlunoDisciplina);
+			ProfessorDisciplinaView jProfessorDisciplina= new ProfessorDisciplinaView();
+			ProfessorDisciplinaController cProfessorDisciplina= new ProfessorDisciplinaController(jProfessorDisciplina);
 
 			try{
 				switch(acao) {
 		            case "cadastrarAluno":
-		                jOpcoes.setVisible(false);
 		                jAluno.setVisible(true);
 		            break;
 		            case "cadastrarProfessor":
-		                jOpcoes.setVisible(false);
 		                jProfessor.setVisible(true);
 		            break;
 		            case "cadastrarCurso":
-		                jOpcoes.setVisible(false);
 		                jCurso.setVisible(true);
 		            break;
                             case "cadastrarTurma":
-		                jOpcoes.setVisible(false);
 		                jTurma.setVisible(true);
 		            break;
+		            case "cadastrarDisciplina":
+		                jDisciplina.setVisible(true);
+		            break;
+		            case "cadastrarAlunoDisciplina":
+		                jAlunoDisciplina.setVisible(true);
+		            break;
+		            case "cadastrarProfessorDisciplina":
+		                jProfessorDisciplina.setVisible(true);
+		            break;
+		        
 		        
 		        } 
 			}

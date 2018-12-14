@@ -1,0 +1,7 @@
+use cursoIdioma;
+
+insert into pessoa(nome, endereco, telefone, cpf)
+values("roger", "maria", "3242", "0049493");
+
+insert into professor(salario, titulacao, codPessoa)
+values(1222, "mestre", LAST_INSERT_ID());

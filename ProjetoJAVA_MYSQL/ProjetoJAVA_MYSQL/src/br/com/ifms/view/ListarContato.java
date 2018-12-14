@@ -8,6 +8,7 @@ package br.com.ifms.view;
 import br.com.ifms.controller.ContatoController;
 import br.com.ifms.model.Contato;
 import br.com.ifms.model.ContatoTableModel;
+import br.com.ifms.view.InserirContato;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.util.List;
 
 /**
  *
@@ -100,6 +101,12 @@ public class InserirContato extends JFrame {
     public Contato pesquisar(Contato co) {
         Contato contato = cc.listarContato(co);
         return contato;
+    }
+
+    public static void main(String[] args) {
+        ContatoTableModel model= new ContatoTableModel();
+        InserirContato lc = new InserirContato(model);
+        lc.setVisible(true);
     }
 
 }

@@ -1,7 +1,7 @@
 package model;
 
 public class Aluno extends Pessoa{
-	private double desconto;
+	private float desconto;
 
 
 	public Aluno(String nome, String endereco, String telefone, String cpf, String tipo, float desconto){
@@ -11,11 +11,11 @@ public class Aluno extends Pessoa{
 
 	public Aluno(){}
 
-	public double getDesconto(){
+	public float getDesconto(){
 		return this.desconto;
 	}
 
-	public void setDesconto(double desconto){
+	public void setDesconto(float desconto){
 		this.desconto= desconto;
 	}
 }

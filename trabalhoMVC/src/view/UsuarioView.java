@@ -49,7 +49,7 @@ public class UsuarioView extends JFrame{
         entrarBotao.addActionListener(listener);
     }
 
-    public void mostrarMensagemErro(String mensagem){
+    public void mostrarMensagem(String mensagem){
         JOptionPane.showMessageDialog(this, mensagem);
     }
 }

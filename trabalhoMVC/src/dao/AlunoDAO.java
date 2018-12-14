@@ -6,7 +6,6 @@
 package dao;
 
 import conexao.DBConexao;
-import model.Aluno;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Aluno;
 
 /**
  *
@@ -23,137 +23,150 @@ import javax.swing.JOptionPane;
  */
 public class AlunoDAO{
 
-    private final String INSERT = "INSERT INTO CONTATO (NOME, TELEFONE, EMAIL) "
-            + "VALUES (?,?,?)";
-    private final String UPDATE = "UPDATE CONTATO SET NOME=?, TELEFONE=?, EMAIL=? WHERE ID=?";
-    private final String DELETE = "DELETE FROM CONTATO WHERE ID =?";
-    private final String LIST = "SELECT * FROM CONTATO";
-    private final String LISTBYID = "SELECT * FROM CONTATO WHERE ID=?";
-    private final String CONTAR = "SELECT COUNT(*) as total FROM CONTATO";
-    private final String LISTNOMEFONE = "SELECT * FROM CONTATO WHERE NOME=? AND TELEFONE=?";
+    private final String INSERT = "insert into pessoa(nome, endereco, telefone, cpf)"
+            + "values(?,?,?,?); "
+            + "insert into aluno(codPessoa,desconto)"
+            + "values(?,?);";
+     
+    private final String UPDATE = "UPDATE aluno SET NOME=?, TELEFONE=?, EMAIL=? WHERE ID=?";
+    private final String DELETE = "DELETE FROM aluno WHERE ID =?";
+    private final String LIST = "SELECT * FROM aluno";
+    private final String LISTBYID = "SELECT * FROM aluno WHERE ID=?";
+    private final String CONTAR = "SELECT COUNT(*) as total FROM aluno";
+    private final String LISTNOMEFONE = "SELECT * FROM aluno WHERE NOME=? AND TELEFONE=?";
 
 
-    public void inserir(Contato contato) {
-        if (contato != null) {
+    public void inserir(Aluno aluno) {
+        if (aluno != null) {
             Connection conn = null;
             try {
                 conn = DBConexao.getConexao();
                 PreparedStatement pstm;
                 pstm = conn.prepareStatement(INSERT);
-
-                pstm.setString(1, contato.getNome());
-                pstm.setString(2, contato.getTelefone());
-                pstm.setString(3, contato.getEmail());
-
+                String idAnterior= "LAST_INSERT_ID()";
+                pstm.setString(1, aluno.getNome());
+                pstm.setString(2, aluno.getEndereco());
+                pstm.setString(3, aluno.getTelefone());
+                pstm.setString(4, aluno.getCpf());
+                pstm.setString(5, idAnterior);
+                pstm.setFloat(6, aluno.getDesconto());
+                
+            
                 pstm.execute();
-                JOptionPane.showMessageDialog(null, "Contato cadastrado com sucesso");
+                JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso");
                 DBConexao.fechaConexao(conn, pstm);
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro ao inserir contato no banco de"
+                JOptionPane.showMessageDialog(null, "Erro ao inserir aluno no banco de"
                         + "dados " + e.getMessage());
             }
         } else {
-            System.out.println("O contato enviado por parâmetro está vazio");
+            System.out.println("O aluno enviado por parâmetro está vazio");
         }
     }
 
-    public void atualizar(Contato contato) {
-        if (contato != null) {
+    public void atualizar(Aluno aluno) {
+        if (aluno != null) {
             Connection conn = null;
             try {
                 conn = DBConexao.getConexao();
                 PreparedStatement pstm;
                 pstm = conn.prepareStatement(UPDATE);
 
-                pstm.setString(1, contato.getNome());
-                pstm.setInt(4, contato.getId());
-                pstm.setString(2, contato.getTelefone());
-                pstm.setString(3, contato.getEmail());
+                pstm.setInt(1, aluno.getCod());
+                pstm.setString(2, aluno.getNome());
+                pstm.setString(3, aluno.getEndereco());
+                pstm.setString(4, aluno.getTelefone());
+                pstm.setString(5, aluno.getCpf());
+                pstm.setFloat(6, aluno.getDesconto());
 
                 pstm.execute();
-                JOptionPane.showMessageDialog(null, "Contato alterado com sucesso");
+                JOptionPane.showMessageDialog(null, "Aluno alterado com sucesso");
                 DBConexao.fechaConexao(conn);
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar contato no banco de"
+                JOptionPane.showMessageDialog(null, "Erro ao atualizar aluno no banco de"
                         + "dados " + e.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "O contato enviado por parâmetro está vazio");
+            JOptionPane.showMessageDialog(null, "O aluno enviado por parâmetro está vazio");
         }
 
     }
 
-    public void remover(int id) {
+    public void remover(int cod) {
         Connection conn = null;
         try {
             conn = DBConexao.getConexao();
             PreparedStatement pstm;
             pstm = conn.prepareStatement(DELETE);
 
-            pstm.setInt(1, id);
+            pstm.setInt(1, cod);
 
             pstm.execute();
             // DBConexao.fechaConexao(conn, pstm);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir contato do banco de"
+            JOptionPane.showMessageDialog(null, "Erro ao excluir aluno do banco de"
                     + "dados " + e.getMessage());
         }
     }
 
-    public List<Contato> getContatos() {
+    public List<Aluno> getAlunos() {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        ArrayList<Contato> contatos = new ArrayList<Contato>();
+        ArrayList<Aluno> alunos = new ArrayList<Aluno>();
         try {
             conn = DBConexao.getConexao();
             pstm = conn.prepareStatement(LIST);
             rs = pstm.executeQuery();
             while (rs.next()) {
-                Contato contato = new Contato();
+                Aluno aluno = new Aluno();
 
-                contato.setId(rs.getInt("id"));
-                contato.setNome(rs.getString("nome"));
-                contato.setTelefone(rs.getString("telefone"));
-                contato.setEmail(rs.getString("email"));
-                contatos.add(contato);
+                aluno.setCod(rs.getInt("cod"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setEndereco(rs.getString("endereco"));
+                aluno.setTelefone(rs.getString("telefone"));
+                aluno.setCpf(rs.getString("cpf"));
+                aluno.setDesconto(rs.getFloat("desconto"));
+                alunos.add(aluno);
             }
             DBConexao.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar contatos"
+            JOptionPane.showMessageDialog(null, "Erro ao listar aluno"
                     + e.getMessage());
         } catch (ClassNotFoundException e) {
-            Logger.getLogger(ContatoDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, e);
         }
-        return contatos;
+        return alunos;
     }
 
-    public Contato getContatoById(int id) {
+    public Aluno getAlunoById(int id) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        Contato contato = new Contato();
+        Aluno aluno = new Aluno();
         try {
             conn = DBConexao.getConexao();
             pstm = conn.prepareStatement(LISTBYID);
             pstm.setInt(1, id);
             rs = pstm.executeQuery();
             while (rs.next()) {
-                contato.setId(rs.getInt("id"));
-                contato.setNome(rs.getString("nome"));
-                contato.setTelefone(rs.getString("telefone"));
-                contato.setEmail(rs.getString("email"));
+                aluno.setCod(rs.getInt("cod"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setEndereco(rs.getString("endereco"));
+                aluno.setTelefone(rs.getString("telefone"));
+                aluno.setCpf(rs.getString("cpf"));
+                aluno.setDesconto(rs.getFloat("desconto"));
             }
             DBConexao.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar contatos" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao listar aluno" + e.getMessage());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ContatoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return contato;
+        return aluno;
     }
 
     public int getQuantiadde() {
@@ -171,19 +184,20 @@ public class AlunoDAO{
             }
             DBConexao.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar contatos"
+            JOptionPane.showMessageDialog(null, "Erro ao calcular"
                     + e.getMessage());
         } catch (ClassNotFoundException e) {
-            Logger.getLogger(ContatoDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return valor;
     }
 
-    public Contato getContatoNomeTel(Contato c) {
+/*
+    public Aluno getAlunoNomeTel(Aluno c) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        Contato contato = new Contato();
+        Aluno aluno = new Aluno();
         try {
             conn = DBConexao.getConexao();
             pstm = conn.prepareStatement(LISTNOMEFONE);
@@ -191,33 +205,32 @@ public class AlunoDAO{
             pstm.setString(2, c.getTelefone());
             rs = pstm.executeQuery();
             while (rs.next()) {
-                contato.setId(rs.getInt("id"));
-                contato.setNome(rs.getString("nome"));
-                contato.setTelefone(rs.getString("telefone"));
-                contato.setEmail(rs.getString("email"));
+                aluno.setId(rs.getInt("id"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setTelefone(rs.getString("telefone"));
 
             }
             DBConexao.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar contatos" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao listar aluno" + e.getMessage());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ContatoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return contato;
+        return aluno;
     }
+    */
 
     public static void main(String[] args) {
-        ContatoDAO cdao = new ContatoDAO();
-        Contato novo = new Contato();
+        AlunoDAO cdao = new AlunoDAO();
+        Aluno novo = new Aluno("oo0","ooi","ihkuhkj","kkjll","jhbj",23423);
 
-        novo.setNome("Andre");
-        novo.setTelefone("283129");
-        novo.setEmail("andre.bezerra@ifms.edu.br");
+        novo.setDesconto(100);
 
-        //  cdao.inserir(novo);
+
+         cdao.inserir(novo);
         //  cdao.remover(5);
-        int quantiadde = cdao.getQuantiadde();
-        System.out.println(quantiadde);
+        //int quantiadde = cdao.getQuantiadde();
+        //System.out.println(quantiadde);
 
     }
 
